@@ -15,6 +15,9 @@ names(confusion) <- c("Actual","Predicted","Freq")
 confusion <- merge(confusion, actual, by=c("Actual"))
 confusion$Percent <- confusion$Freq/confusion$ActualFreq*100
 
+install.packages("ggplot2")
+library(ggplot2)
+
 #render plot
 # we use three different layers
 # first we draw tiles and fill color based on percentage of test cases
