@@ -3,17 +3,23 @@ setwd("/Users/Guy/Development/nBA/NLP/")
 
 data <- read.table("/Users/Guy/Development/nBA/NLP/OperationalCategory-May2.tsv", header=TRUE, sep="\t")
 
-#compute frequency of actual categories
-actual <- as.data.frame(table(data$Human1))
-names(actual) <- c("Actual","ActualFreq")
+confMatrix <- function(data, human, guess) {
 
-#build confusion matrix
-confusion <- as.data.frame(table(data$Human1, data$Guess1))
-names(confusion) <- c("Actual","Predicted","Freq")
+  #compute frequency of actual categories
+  actual <- as.data.frame(table(data[[human]]))
+  names(actual) <- c("Actual","ActualFreq")
 
-#calculate percentage of test cases based on actual frequency
-confusion <- merge(confusion, actual, by=c("Actual"))
-confusion$Percent <- confusion$Freq/confusion$ActualFreq*100
+  #build confusion matrix
+  confusion <- as.data.frame(table(data[[human]], data[[guess]]))
+  names(confusion) <- c("Actual","Predicted","Freq")
+
+  #calculate percentage of test cases based on actual frequency
+  confusion <- merge(confusion, actual, by=c("Actual"))
+  confusion$Percent <- confusion$Freq/confusion$ActualFreq*100
+  return (confusion)
+}  
+
+confusion <- confMatrix(data, "Human1", "Guess1")
 
 install.packages("ggplot2")
 library(ggplot2)
