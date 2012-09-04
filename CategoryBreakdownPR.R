@@ -38,7 +38,7 @@ ggplot(humanMeans, aes(y=recall, x=reorder(V3,nrow), size=20)) +
   # X-Axis Titles
   scale_x_discrete(name="Categories (by Frequency)") + 
   # Y-Axis
-  scale_y_continuous(name="Recall & Precision", , labels=percent) +
+  scale_y_continuous(name="Recall & Precision", labels=percent) +
   # Legend
   #opts(legend.position="none") + 
   # Flip 
