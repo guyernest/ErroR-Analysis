@@ -31,7 +31,16 @@ library(ggplot2)
 # For formating the scales
 library(scales) 
 
-ggplot(humanMeans, aes(y=recall, x=reorder(V3,nrow), size=20)) + 
+# Plotting the frequencies
+ggplot(humanMeans, aes(y=nrow, x=reorder(V3,nrow))) + 
+  geom_bar() +
+  opts(title="Categories Frequencies") + 
+  scale_x_discrete(name="Categories (by Frequency)") + 
+  scale_y_log10(name="# cases", breaks = c(10,100,1000,10000,100000)) +
+  coord_flip()
+  
+# Plotting the recall and percision of each category
+ggplot(humanMeans, aes(y=recall, x=reorder(V3,nrow))) + 
   # The recall symbols
   geom_point(colour="#FF9999", shape = '+', size = 15) + 
   geom_hline(yintercept=recall, colour="#FF9999") +
@@ -45,11 +54,11 @@ ggplot(humanMeans, aes(y=recall, x=reorder(V3,nrow), size=20)) +
   # Y-Axis
   scale_y_continuous(name="Recall & Precision", labels=percent) +
   # Legend
-  #opts(legend.position="none") + 
+  opts(legend.position="none") + 
   # Flip 
   coord_flip()
 
-pdfFile <-c("/path/to/files/outputFile.pdf")
+pdfFile <-c("outputFile.pdf")
 pdf(pdfFile)
 
 ggsave(pdfFile)
