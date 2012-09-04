@@ -14,10 +14,20 @@ humanMeans <- data.frame(humanMeans,margin)
  
 #Plot the category breakdown
 library(ggplot2)
-ggplot(humanMeans, aes(y=recall, x=reorder(Human1,-nrow), size=20)) + geom_point(colour="#FF9999") + 
-geom_point(aes(y=precision, x=reorder(Human1,-nrow), size=20)) + opts(title="Precision and Recall per Categories") + 
-scale_x_discrete(name="Categories (by Frequency)") +scale_y_continuous(name="Recall & Precision") +
-opts(legend.position="none")+ opts(axis.text.x=theme_text(angle=90))
+
+ggplot(humanMeans, aes(y=recall, x=reorder(V3,-nrow), size=20)) + 
+  # The recall symbols
+  geom_point(colour="#FF9999", shape = '+', size = 15) + 
+  # The percision symbols
+  geom_point(aes(y=precision, x=reorder(V3,-nrow)), shape = '+', size=15) + 
+  # Chart Title
+  opts(title="Precision and Recall per Categories") + 
+  # Axis Titles
+  scale_x_discrete(name="Categories (by Frequency)") + scale_y_continuous(name="Recall & Precision") +
+  # Legend
+  opts(legend.position="none") + 
+  # X-Axis text rotation 
+  opts(axis.text.x=theme_text(angle=90))
 
 pdfFile <-c("/Users/Guy/Development/nBA/NLP/PrecisionAndRecall.pdf")
 pdf(pdfFile)
