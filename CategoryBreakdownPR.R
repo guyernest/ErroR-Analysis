@@ -25,6 +25,8 @@ humanMeans <- data.frame(humanMeans,margin)
  
 #Plot the category breakdown
 library(ggplot2)
+# For formating the scales
+library(scales) 
 
 ggplot(humanMeans, aes(y=recall, x=reorder(V3,nrow), size=20)) + 
   # The recall symbols
@@ -33,12 +35,12 @@ ggplot(humanMeans, aes(y=recall, x=reorder(V3,nrow), size=20)) +
   geom_point(aes(y=precision, x=reorder(V3,nrow)), shape = '+', size=15) + 
   # Chart Title
   opts(title="Precision and Recall per Categories") + 
-  # Axis Titles
-  scale_x_discrete(name="Categories (by Frequency)") + scale_y_continuous(name="Recall & Precision") +
+  # X-Axis Titles
+  scale_x_discrete(name="Categories (by Frequency)") + 
+  # Y-Axis
+  scale_y_continuous(name="Recall & Precision", , labels=percent) +
   # Legend
-  opts(legend.position="none") + 
-  # X-Axis text rotation 
-  opts(axis.text.x=theme_text(angle=90)) +
+  #opts(legend.position="none") + 
   # Flip 
   coord_flip()
 
