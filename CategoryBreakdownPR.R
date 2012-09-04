@@ -1,8 +1,11 @@
 # change to the new directory
 setwd("/path/to/files/")
 
-cats <- read.table("/path/to/files/fileName.tsv", header=FALSE, sep="\t")
- 
+# Load a predefine file
+#cats <- read.table("/path/to/files/fileName.tsv", header=FALSE, sep="\t")
+# Or choose the file to load
+cats <- read.table(file.choose(), header=FALSE, sep="\t")
+
 # Adding Match counter (0|1) based on matching rule (it can be also comparing V3 and V4)
 cats$Match[cats$V2=='true'] <- 1.0
 cats$Match[cats$V2=='false'] <- 0
@@ -23,11 +26,11 @@ humanMeans <- data.frame(humanMeans,margin)
 #Plot the category breakdown
 library(ggplot2)
 
-ggplot(humanMeans, aes(y=recall, x=reorder(V3,-nrow), size=20)) + 
+ggplot(humanMeans, aes(y=recall, x=reorder(V3,nrow), size=20)) + 
   # The recall symbols
   geom_point(colour="#FF9999", shape = '+', size = 15) + 
   # The percision symbols
-  geom_point(aes(y=precision, x=reorder(V3,-nrow)), shape = '+', size=15) + 
+  geom_point(aes(y=precision, x=reorder(V3,nrow)), shape = '+', size=15) + 
   # Chart Title
   opts(title="Precision and Recall per Categories") + 
   # Axis Titles
@@ -35,7 +38,9 @@ ggplot(humanMeans, aes(y=recall, x=reorder(V3,-nrow), size=20)) +
   # Legend
   opts(legend.position="none") + 
   # X-Axis text rotation 
-  opts(axis.text.x=theme_text(angle=90))
+  opts(axis.text.x=theme_text(angle=90)) +
+  # Flip 
+  coord_flip()
 
 pdfFile <-c("/path/to/files/outputFile.pdf")
 pdf(pdfFile)
