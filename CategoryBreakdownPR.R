@@ -1,10 +1,18 @@
 # change to the new directory
-setwd("/Users/Guy/Development/nBA/NLP/")
+setwd("/path/to/files/")
 
-cats <- read.table("/Users/Guy/Development/nBA/NLP/NonOperationalCategory.tsv", header=TRUE, sep="\t")
+cats <- read.table("/path/to/files/fileName.tsv", header=FALSE, sep="\t")
  
+# Adding Match counter (0|1) based on matching rule (it can be also comparing V3 and V4)
+cats$Match[cats$V2=='true'] <- 1.0
+cats$Match[cats$V2=='false'] <- 0
+
+# Adding Significant counter (0|1) based on matching rule (it can be if V4 is null)
+cats$Sig[cats$V1=='1.0'] <- 1.0
+cats$Sig[cats$V1=='null'] <- 0
+
 library(plyr)
-humanMeans <- ddply(cats,~Human1,summarise,recall=mean(Match1),precision=sum(Match1)/sum(Sig1),nrow=length(Human1))
+humanMeans <- ddply(cats,~V3,summarise,recall=mean(Match),precision=sum(Match)/sum(Sig),nrow=length(V3))
 # Sorting by frequency
 humanMeans <- humanMeans[with(humanMeans,order(-nrow)), ]
 # Calculating the marginal error for each category
@@ -29,7 +37,7 @@ ggplot(humanMeans, aes(y=recall, x=reorder(V3,-nrow), size=20)) +
   # X-Axis text rotation 
   opts(axis.text.x=theme_text(angle=90))
 
-pdfFile <-c("/Users/Guy/Development/nBA/NLP/PrecisionAndRecall.pdf")
+pdfFile <-c("/path/to/files/outputFile.pdf")
 pdf(pdfFile)
 
 ggsave(pdfFile)
