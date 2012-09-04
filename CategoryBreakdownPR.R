@@ -3,8 +3,10 @@ setwd("/path/to/files/")
 
 # Load a predefine file
 #cats <- read.table("/path/to/files/fileName.tsv", header=FALSE, sep="\t")
+#cats <- read.table("/path/to/files/fileName.tsv", header=FALSE, sep="\t", comment.char = "", , quote = "")
 # Or choose the file to load
 cats <- read.table(file.choose(), header=FALSE, sep="\t")
+cats <- read.table(file.choose(), header=FALSE, sep="\t", comment.char = "", quote = "")
 
 # Adding Match counter (0|1) based on matching rule (it can be also comparing V3 and V4)
 cats$Match[cats$V2=='true'] <- 1.0
