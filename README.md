@@ -17,4 +17,10 @@ How to make it work?
 
 Download R or RStudio from their open source sites
 
+Use the sample files that have the following format
+V1 - Score - how certain is the classification (in the sample file we have only 1.0 and null)
+V2 - Match - is the classification correct (can be also calculated by comapring V3 and V4 below)
+V3 - Correct label
+V4 - Classified label as guessed by the system
+
 
