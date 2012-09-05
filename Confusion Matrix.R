@@ -1,7 +1,8 @@
 # change to the new directory
 setwd("/Users/Guy/Development/nBA/NLP/")
 
-data <- read.table("/Users/Guy/Development/nBA/NLP/OperationalCategory-May2.tsv", header=TRUE, sep="\t")
+#data <- read.table("/Users/Guy/Development/nBA/NLP/OperationalCategory-May2.tsv", header=TRUE, sep="\t")
+data <- read.table(file.choose(), header=FALSE, sep="\t", comment.char = "", quote = "")
 
 confMatrix <- function(data, human, guess) {
 
@@ -19,7 +20,7 @@ confMatrix <- function(data, human, guess) {
   return (confusion)
 }  
 
-confusion <- confMatrix(data, "Human1", "Guess1")
+confusion <- confMatrix(data, "V3", "V4")
 
 install.packages("ggplot2")
 library(ggplot2)
