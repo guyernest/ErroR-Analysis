@@ -9,6 +9,7 @@ What does it do?
 
 It allows importing the output file in a given format for each of the test cases for analysis and visualization of the results:
 * Percision and recall of each category/label
+- ![Breakdown Example](https://raw.github.com/guyernest/ErroR-Analysis/master/ResultsBreakdown.png)
 * Confusion Matrix between the categories/labels
 * Diff analysis between different runs of the system 
 
