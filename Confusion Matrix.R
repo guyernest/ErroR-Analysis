@@ -38,10 +38,12 @@ tile <- ggplot() + geom_tile(aes(x=Actual, y=Predicted,fill=Percent),data=confus
 tile <- tile + geom_text(aes(x=Actual,y=Predicted, label=sprintf("%.1f", Percent)),data=subset(confusion, Percent > 0), colour="black", size=4, vjust = -0.2) + 
   scale_fill_gradient(name = "% of Actual", low="grey",high="red")
 
+# lastly we draw diagonal tiles. We use alpha = 0 so as not to hide previous layers but use size=0.3 to highlight border
+tile <- tile + geom_tile(aes(x=Actual,y=Predicted),data=subset(confusion, tolower(as.character(Actual))==as.character(Predicted)), color="green", size=0.5, fill="green", alpha=0)
+
+# Adding the count of the cases in each non zero tile
 tile <- tile + geom_text(aes(x=Actual,y=Predicted, label=Freq),data=subset(confusion, Freq > 0), colour="white", size=3, vjust = 1.2) 
 
-# lastly we draw diagonal tiles. We use alpha = 0 so as not to hide previous layers but use size=0.3 to highlight border
-#tile <- tile + geom_tile(aes(x=Actual,y=Predicted),data=subset(confusion, as.character(Actual)==as.character(Predicted)), color="black",size=0.3, fill="black", alpha=0)
 
 tile + opts(axis.text.x=theme_text(angle=90))
 
