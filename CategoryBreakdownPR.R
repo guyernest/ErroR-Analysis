@@ -42,10 +42,11 @@ ggplot(humanMeans, aes(y=nrow, x=reorder(V3,nrow))) +
 # Plotting the recall and percision of each category
 ggplot(humanMeans, aes(y=recall, x=reorder(V3,nrow))) + 
   # The recall symbols
-  geom_point(colour="#FF9999", shape = '+', size = 15) + 
+  geom_point(colour="#FF9999", shape = '+', aes(size = nrow)) + 
   geom_hline(yintercept=recall, colour="#FF9999") +
   # The percision symbols
-  geom_point(aes(y=precision, x=reorder(V3,nrow)), shape = '+', size=15) + 
+  geom_point(aes(y=precision, x=reorder(V3,nrow),size = nrow), shape = '+', show_guide = TRUE) + 
+  scale_size(name ="#cases", breaks = c(10,100,500,1000,5000,10000), trans = log_trans(), range = c(1,15)) + 
   geom_hline(yintercept=precision) +
   # Chart Title
   opts(title="Precision and Recall per Categories") + 
@@ -54,7 +55,7 @@ ggplot(humanMeans, aes(y=recall, x=reorder(V3,nrow))) +
   # Y-Axis
   scale_y_continuous(name="Recall & Precision", labels=percent) +
   # Legend
-  opts(legend.position="none") + 
+  #  opts(legend.position="none") + 
   # Flip 
   coord_flip()
 
