@@ -43,9 +43,11 @@ ggplot(humanMeans, aes(y=nrow, x=reorder(V3,nrow))) +
 ggplot(humanMeans, aes(y=recall, x=reorder(V3,nrow))) + 
   # The recall symbols
   geom_point(colour="#FF9999", shape = '+', aes(size = nrow)) + 
+  stat_smooth(aes(group = 1),colour="#FF9999", method ="loess", se = FALSE) +
   geom_hline(yintercept=recall, colour="#FF9999") +
   # The percision symbols
   geom_point(aes(y=precision, x=reorder(V3,nrow),size = nrow), shape = '+') + 
+  stat_smooth(aes(y=precision, group = 1),colour="#000000", method ="loess", se = FALSE) +
   scale_size(trans = log_trans(), range = c(1,15)) + 
   geom_hline(yintercept=precision) +
   # Text of the size of each label
