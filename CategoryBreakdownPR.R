@@ -45,17 +45,19 @@ ggplot(humanMeans, aes(y=recall, x=reorder(V3,nrow))) +
   geom_point(colour="#FF9999", shape = '+', aes(size = nrow)) + 
   geom_hline(yintercept=recall, colour="#FF9999") +
   # The percision symbols
-  geom_point(aes(y=precision, x=reorder(V3,nrow),size = nrow), shape = '+', show_guide = TRUE) + 
-  scale_size(name ="#cases", breaks = c(10,100,500,1000,5000,10000), trans = log_trans(), range = c(1,15)) + 
+  geom_point(aes(y=precision, x=reorder(V3,nrow),size = nrow), shape = '+') + 
+  scale_size(trans = log_trans(), range = c(1,15)) + 
   geom_hline(yintercept=precision) +
+  # Text of the size of each label
+  geom_text(aes(y=-0.02, label=nrow, size = 5)) +
   # Chart Title
   opts(title="Precision and Recall per Categories") + 
   # X-Axis Titles
   scale_x_discrete(name="Categories (by Frequency)") + 
   # Y-Axis
-  scale_y_continuous(name="Recall & Precision", labels=percent) +
+  scale_y_continuous(name="Recall & Precision", labels=percent, breaks = c(recall, precision, seq(from = 0, to= 1.0, by = 0.2))) +
   # Legend
-  #  opts(legend.position="none") + 
+  opts(legend.position="none") + 
   # Flip 
   coord_flip()
 
