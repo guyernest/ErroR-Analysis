@@ -44,6 +44,8 @@ tile <- tile + geom_tile(aes(x=Actual,y=Predicted),data=subset(confusion, tolowe
 # Adding the count of the cases in each non zero tile
 tile <- tile + geom_text(aes(x=Actual,y=Predicted, label=Freq),data=subset(confusion, Freq > 0), colour="white", size=3, vjust = 1.2) 
 
+# Adding the count of the total cases in each category
+tile <- tile + geom_text(aes(x=Actual,y = -0.5, label=ActualFreq),data=confusion, alpha=0.1, size=5, angle=90, hjust=0) 
 
 tile + opts(axis.text.x=theme_text(angle=90))
 
