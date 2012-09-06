@@ -1,10 +1,10 @@
 # Loading the 2 files for the diff
-OC1 <- read.delim("/Users/yeytani/data/insights/2012-08-26_12:17/CompareNonOperationalCategory.all.results.tsv", header=F)
-OC2 <- read.delim("/Users/yeytani/data/insights/2012-08-26_12:16/CompareNonOperationalCategory.all.results.tsv", header=F)
+#OC1 <- read.delim("/path/to/file1.tsv", header=F)
+#OC2 <- read.delim("/path/to/file2.tsv", header=F)
 
 # Alternatively you can open file chooser:
-#OC1 <- read.delim(file.choose(), header=F)
-#OC2 <- read.delim(file.choose(), header=F)
+OC1 <- read.delim(file.choose(), header=F)
+OC2 <- read.delim(file.choose(), header=F)
 
 Match1 <- OC1$V2[OC1$V4 != OC2$V4]
 Match2 <- OC2$V2[OC1$V4 != OC2$V4]
