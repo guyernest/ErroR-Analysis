@@ -40,3 +40,19 @@ diffCats$diffFalse=modifiedFalse-originalFalse
 
 diffCats
 diff[diff$CatT=='Offering',]
+
+# Plot the changes on the confusion Matrix
+
+tile <- ggplot() + 
+  geom_tile(aes(x=Actual, y=Predicted,fill=Freq),data=aConf, color="black",size=0.1) + 
+  labs(x="Actual",y="Predicted")
+
+tile <- tile + geom_text(aes(x=Actual,y=Predicted, label=Freq),data=subset(aConf, Freq > 0), colour="black", size=4, vjust = -0.2) + 
+   scale_fill_gradient(name = "Count", low="grey",high="red")
+tile <- tile + geom_text(aes(x=Actual,y=Predicted, label=Freq), data=subset(bConf, Freq > 0), colour="white", size=4, vjust = 1)
+
+# lastly we draw diagonal tiles. We use alpha = 0 so as not to hide previous layers but use size=0.3 to highlight border
+tile <- tile + geom_tile(aes(x=Actual,y=Predicted),data=subset(aConf, tolower(as.character(Actual))==as.character(Predicted)), color="green", size=0.5, fill="green", alpha=0)
+
+tile + opts(axis.text.x=theme_text(angle=90))
+
