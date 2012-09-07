@@ -18,7 +18,7 @@ Prop <- OC1$V12[OC1$V4 != OC2$V4]
 
 diff <- data.frame(CatT, Cat1, Cat2, Match1, Match2, Subj, Prop)
 
-paste(nrow(diff), "/", nrow(OC1), '=', format(nrow(diff)/nrow(OC1)))
+paste(nrow(diff), "/", nrow(OC1), '=', sprintf("%.3f",(nrow(diff)/nrow(OC1))*100), '% were changed', sep="")
 
 library(plyr)
 diffCats <- ddply(diff, ~CatT, summarise, 
