@@ -16,6 +16,8 @@ It allows importing the output file in a given format for each of the test cases
 ![Confusion Matrix Example](https://raw.github.com/guyernest/ErroR-Analysis/master/ConfusionMatrix.png)
 * Diff analysis between different runs of the system 
 
+![Diff Confusion Matrix Example](https://raw.github.com/guyernest/ErroR-Analysis/master/Diff Confusion Matrix.png)
+
 How to make it work?
 --------------------
 
