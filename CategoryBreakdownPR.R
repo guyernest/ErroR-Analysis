@@ -17,6 +17,9 @@ cats$Sig[cats$V1=='null'] <- 0
 recall <- mean(cats$Match)
 precision <- sum(cats$Match)/sum(cats$Sig)
 
+# Calculating the recall of lower level categories (not the root = '15')
+lowLevelRecall <- mean(cats[cats$V3 != '15',5])
+
 library(plyr)
 humanMeans <- ddply(cats,~V3,summarise,recall=mean(Match),precision=sum(Match)/sum(Sig),nrow=length(V3))
 # Sorting by frequency
