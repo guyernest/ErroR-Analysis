@@ -13,10 +13,12 @@ Cat2 <- OC2$V4[OC1$V4 != OC2$V4]
 Cat1 <- OC1$V4[OC1$V4 != OC2$V4]
 CatT <- OC1$V3[OC1$V4 != OC2$V4]
 
-Subj <- OC1$V11[OC1$V4 != OC2$V4]
-Prop <- OC1$V12[OC1$V4 != OC2$V4]
+#Subj <- OC1$V11[OC1$V4 != OC2$V4]
+#Prop <- OC1$V12[OC1$V4 != OC2$V4]
 
-diff <- data.frame(CatT, Cat1, Cat2, Match1, Match2, Subj, Prop)
+#diff <- data.frame(CatT, Cat1, Cat2, Match1, Match2, Subj, Prop)
+diff <- data.frame(CatT, Cat1, Cat2, Match1, Match2)
+
 
 paste(nrow(diff), "/", nrow(OC1), '=', sprintf("%.3f",(nrow(diff)/nrow(OC1))*100), '% were changed', sep="")
 
@@ -39,7 +41,7 @@ diffCats$diffTrue=modifiedTrue-originalTrue
 diffCats$diffFalse=modifiedFalse-originalFalse
 
 diffCats
-diff[diff$CatT=='Offering',]
+diff[diff$CatT=='12',]
 
 # Plot the changes on the confusion Matrix
 
