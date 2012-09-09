@@ -43,6 +43,9 @@ diffCats$diffFalse=modifiedFalse-originalFalse
 diffCats
 diff[diff$CatT=='12',]
 
+aConf = confMatrix(diff, "CatT", "Cat1")
+bConf = confMatrix(diff, "CatT", "Cat2")
+
 # Plot the changes on the confusion Matrix
 
 tile <- ggplot() + 
