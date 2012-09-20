@@ -32,11 +32,11 @@ library(ggplot2)
 #render plot
 # we use three different layers
 # first we draw tiles and fill color based on percentage of test cases
-tile <- ggplot() + geom_tile(aes(x=Actual, y=Predicted,fill=Freq),data=subset(confusion, tolower(as.character(Actual))!=as.character(Predicted)), color="black",size=0.1) + labs(x="Actual",y="Predicted") +
+tile <- ggplot() + geom_tile(aes(x=Actual, y=Predicted,fill=Freq),data=subset(confusion, tolower(as.character(Actual))!=tolower(as.character(Predicted))), color="black",size=0.1) + labs(x="Actual",y="Predicted") +
  scale_fill_gradient(name = "count", low="grey",high="red")
 
 # Now we draw diagonal tiles. 
-tile <- tile + geom_tile(aes(x=Actual,y=Predicted),data=subset(confusion, tolower(as.character(Actual))==as.character(Predicted)), color="green", size=0.5, fill="green")
+tile <- tile + geom_tile(aes(x=Actual,y=Predicted),data=subset(confusion, tolower(as.character(Actual))==tolower(as.character(Predicted))), color="green", size=0.5, fill="green")
 
 # Adding the count of the cases in each non zero tile
 tile <- tile + geom_text(aes(x=Actual,y=Predicted, label=Freq),data=subset(confusion, Freq > 0), colour="blue", size=4, vjust = 1.2) 
