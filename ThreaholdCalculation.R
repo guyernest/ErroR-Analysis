@@ -51,7 +51,7 @@ OC1$Prob2[OC1$V6!='null'] <- as.double(sub(".*?(,[a-z ]*=([0-9.E-]*)).*","\\2",O
 OC1$isCat2 <- 0 
 OC1$isCat2[tolower(OC1$V3) == OC1$Cat2] <- 1 
 
-# Extracting the second label and its probability
+# Extracting the third label and its probability
 OC1$Cat3[OC1$V6!='null'] <- sub(".*?(,.*?,([a-z ]*)=[0-9\\.]*).*","\\2",OC1$V6[OC1$V6!='null'])
 OC1$Prob3[OC1$V6=='null'] <- 0
 OC1$Prob3[OC1$V6!='null'] <- as.double(sub(".*?(,.*?,[a-z ]*=([0-9.E-]*)).*","\\2",OC1$V6[OC1$V6!='null']))
