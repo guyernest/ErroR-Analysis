@@ -62,6 +62,9 @@ ggplot(humanMeans, aes(y=recall, x=reorder(V3,nrow))) +
   scale_x_discrete(name="Categories (by Frequency)") + 
   # Y-Axis
   scale_y_continuous(name="Recall & Precision", labels=percent, breaks = c(recall, precision, seq(from = 0, to= 1.0, by = 0.2))) +
+  # Annotate the total means
+  annotate("text",x=3, y = recall, label = "Recall", angle=90, colour="#FF9999", size=4, vjust=-0.5) +
+  annotate("text",x=3, y = precision, label = "Precision", angle=90, size=4, vjust=-0.5) +
   # Legend
   opts(legend.position="none") + 
   # Flip 
