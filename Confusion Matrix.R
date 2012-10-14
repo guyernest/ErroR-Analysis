@@ -46,6 +46,7 @@ asPercent <- function(number) {
 
 confusion <- confMatrix(data, "V3", "V4")
 
+library(plyr)
 # Calculating the precision for each prediction
 predictMeans <- ddply(data,~NLP1,summarise,precision=length(Human1[isDiagonal(Human1,NLP1)])/length(NLP1[NLP1 != "Not Stated"]))
 # Adding the precision above to the the confusion matrix
@@ -77,7 +78,7 @@ tile <- tile + geom_text(aes(label=paste(sprintf("%.1f", Percent),"%", sep =""))
 tile <- tile + geom_text(aes(y = -0.5, label=ActualFreq), alpha=0.1, size=5, angle=90, hjust=0) 
 
 # Precision of each row
-tile <- tile + geom_text(aes(x=-0.5, label=asPercent(100*precision)), alpha=0.5, size=4, hjust=-0.5)
+tile <- tile + geom_text(aes(x=-1, label=asPercent(100*precision)), size=3, hjust=-0.5)
 
 
 tile + opts(axis.text.x=theme_text(angle=90))
