@@ -48,9 +48,9 @@ confusion <- confMatrix(data, "V3", "V4")
 
 library(plyr)
 # Calculating the precision for each prediction
-predictMeans <- ddply(data,~NLP1,summarise,precision=length(Human1[isDiagonal(Human1,NLP1)])/length(NLP1[NLP1 != "Not Stated"]))
+predictMeans <- ddply(data,~V3,summarise,precision=length(V3[isDiagonal(V3,V4)])/length(V4[V4 != "Not Stated"]))
 # Adding the precision above to the the confusion matrix
-confusion <- merge(confusion, predictMeans, by.x="Predicted", by.y="NLP1")
+confusion <- merge(confusion, predictMeans, by.x="Predicted", by.y="V3")
 
 
 #install.packages("ggplot2")
